@@ -14,13 +14,13 @@ This first post is dedicated to a wonderfull tool => [Monkey][1]!
 
 If you had never heard of this tool, your life is turning better now. Monkey is a simple tool which allow to **generate pseudo-random gestures**, on a **device** or on an **emulator**. Shortly, you can in a few seconds simulate a user using your application, but a pretty stupid one (just as all users ?) because all his actions will be generated randomly. These actions won’t make any sense, but the aim here is to **detect bugs** in your app, and this can be very useful.
 
-***Note 1**: This is absolutely not a substitute to other tests you should do (like unit tests…). Do what I say, not what I do :p*
+***Note 1***: *This is absolutely not a substitute to other tests you should do (like unit tests…). Do what I say, not what I do :p*
 
-***Note 2**: For this tut, I suppose you have one emulator or a device connected in debug mode (with ADB drivers installed). I won’t detail this part.*
+***Note 2***: *For this tut, I suppose you have one emulator or a device connected in debug mode (with ADB drivers installed). I won’t detail this part.*
 
 Here we go, launching cmd, and browsing to *[android-sdk-path]**/platform-tools.* The basic command to use monkey is the following:
 
-    adb shell monkey &#91;options&#93;
+    adb shell monkey <options>
 
 For example, if your application package is com.myapp and you want to generate 1000 gestures, with a delay of 500ms between each event, you have to use this command:
 

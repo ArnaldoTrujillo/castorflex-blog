@@ -86,7 +86,7 @@ public class MyAdapter extends BaseAdapter {
 ```
 
 A simple picture to understand the role of the ImageLoader:  
-[![][6]][6]  
+{% img center /images/imageloader.png %}  
 And his code:
 
 

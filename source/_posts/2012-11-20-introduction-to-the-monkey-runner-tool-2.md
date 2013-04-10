@@ -25,48 +25,48 @@ Stop talking, and let’s go. The API is contained in three modules which are:
  [4]: http://developer.android.com/tools/help/MonkeyDevice.html "MonkeyDevice"
  [5]: http://developer.android.com/tools/help/MonkeyImage.html
 
-Let’s create our monkeyrunner file, call it *mymonkey.py* for example (*.py* because I want need my syntax coloring on vim :p)
-
+Let’s create our monkeyrunner file, call it *mymonkey.py* for example (*.py* because I need my syntax coloring on vim :p)
+```python
     from com.android.monkeyrunner import MonkeyRunner, MonkeyDevice
     import commands
     import sys
-    &nbsp;
+     
     # starting script
     print "start"
-    &nbsp;
+     
     # connection to the current device, and return a MonkeyDevice object
-    device = MonkeyRunner.waitForConnection&#40;&#41;
-    &nbsp;
-    apk_path = device.shell&#40;'pm path com.myapp'&#41;
-    if apk_path.startswith&#40;'package:'&#41;:
+    device = MonkeyRunner.waitForConnection()
+     
+    apk_path = device.shell('pm path com.myapp')
+    if apk_path.startswith('package:'):
         print "myapp already installed."
     else:
         print "myapp not installed, installing APKs..."
-        device.installPackage&#40;'myapp.apk'&#41;
-    &nbsp;
+        device.installPackage('myapp.apk')
+     
     print "launching myapp..."
-    device.startActivity&#40;component='com.myapp/com.myapp.MainActivity'&#41;
-    &nbsp;
+    device.startActivity(component='com.myapp/com.myapp.MainActivity')
+     
     #screenshot
-    MonkeyRunner.sleep&#40;1&#41;
-    result = device.takeSnapshot&#40;&#41;
-    result.writeToFile&#40;'./screenshots/splash.png','png'&#41;
+    MonkeyRunner.sleep(1)
+    result = device.takeSnapshot()
+    result.writeToFile('./screenshots/splash.png','png')
     print "screen 1 taken"
-    &nbsp;
+     
     #sending an event which simulate a click on the menu button
-    device.press&#40;'KEYCODE_MENU', MonkeyDevice.DOWN_AND_UP&#41;
-    &nbsp;
+    device.press('KEYCODE_MENU', MonkeyDevice.DOWN_AND_UP)
+     
     print "end of script"
-
+```
 To launch this script you only have to execute this command:
 
     monkeyrunner mymonkey.py
 
-***Note 1: ****The monkeyrunner command is situated in** [android-sdk-path]/tools/* ***   
+***Note 1***: *The monkeyrunner command is situated in [android-sdk-path]/tools/*   
   
-Note 2: ****If you are developing on windows, you may have to put the absolute paths (C:/etc.).*   
+***Note 2***: *If you are developing on windows, you may have to put the absolute paths (C:/etc.).*   
   
-***Note 3: **You can of course run your Unit tests !*  
+***Note 3***: *You can of course run your Unit tests !*  
   
 And voilà! You have now the most basic script in the world of the universe, which connect monkeyrunner to a device, install and launch an application, take and save a screenshot, and clic on the menu button, you can now imagine all the things you can do.   
   

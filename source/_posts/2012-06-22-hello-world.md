@@ -13,6 +13,7 @@ categories:
   - Uncategorized
 ---
 # 
+`//TODO`
 
 Bonjour et bienvenue à tous sur mon blog, entièrement dédié au développement d’applications Android.
 
