@@ -93,3 +93,11 @@ google_analytics_tracking_id: UA-32954204-1
 
 # Facebook Like
 facebook_like: false
+
+# Fork Me On Github Ribbons
+# Must be "left" or "right". Leave blank to have no ribbon.
+forkme_side: right
+#
+# # Must be one of "red_aa0000", "green_007200", "darkblue_121621",
+# # "orange_ff7600", "gray_6d6d6d", or "white_ffffff"
+forkme_color: darkblue_121621
