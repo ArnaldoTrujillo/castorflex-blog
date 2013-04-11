@@ -2,6 +2,7 @@
 title: 'ListView optimisations : Part 1 (the ViewHolder)'
 author: Antoine Merle
 layout: post
+comments: true
 permalink: /listview-optimisations-part-1-the-viewholder/
 categories:
   - Listview

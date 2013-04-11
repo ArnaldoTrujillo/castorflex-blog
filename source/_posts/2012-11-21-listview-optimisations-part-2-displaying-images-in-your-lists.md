@@ -2,6 +2,7 @@
 title: 'ListView optimisations : Part 2 (Displaying images in your lists)'
 author: Antoine Merle
 layout: post
+comments: true
 permalink: /listview-optimisations-part-2-displaying-images-in-your-lists/
 categories:
   - Listview

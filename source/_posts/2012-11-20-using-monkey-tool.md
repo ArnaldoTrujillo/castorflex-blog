@@ -2,6 +2,7 @@
 title: Using Monkey tool
 author: Antoine Merle
 layout: post
+comments: true
 permalink: /using-monkey-tool/
 categories:
   - Tests
