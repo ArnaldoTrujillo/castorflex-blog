@@ -1,0 +1,11 @@
+---
+layout: page
+title: "404 Error"
+date: 2012-10-26 16:25
+comments: false
+sharing: false
+footer: false
+---
+
+
+Hi, I recently migrated my blog, so you might have some troubles if you come from google! Sorry about that!
