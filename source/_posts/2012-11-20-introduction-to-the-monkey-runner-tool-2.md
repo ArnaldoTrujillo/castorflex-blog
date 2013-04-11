@@ -2,6 +2,7 @@
 title: Introduction to the Monkey Runner tool
 author: Antoine Merle
 layout: post
+comments: true
 permalink: /introduction-to-the-monkey-runner-tool-2/
 categories:
   - Tests

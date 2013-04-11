@@ -2,6 +2,7 @@
 title: Hello world!
 author: Antoine Merle
 layout: post
+comments: true
 permalink: /hello-world/
 image:
   - 
