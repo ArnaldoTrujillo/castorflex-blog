@@ -11,7 +11,7 @@ categories:
 
 When you develop on Android, you will probably need to make lists pretty quickly. However, it can be complicated to understand all the mecanisms when you are a beginner. This serie of posts aims to give you tips if you want to increase the smoothness in your lists.
 
-This first post is a basic one which talk about a well known tip, called ViewHolder. This is absolutely essential if you want to have a viable list. But we must first understand how it works.
+This first post is a basic one which talk about a well known tip, called ViewHolder. <!-- more -->This is absolutely essential if you want to have a viable list. But we must first understand how it works.
 
 A list is composed by elements displayed in views, which ones are declared in xml files (generally). Usually, a list is composed by elements whose views are the same, only the content change. That’s why we use the same view for all the elements. The role of the adapter is to provide views to the list. It has to create and modify their contents.  
 Here is an example of a basic custom adapter, providing elements with a name and a description :

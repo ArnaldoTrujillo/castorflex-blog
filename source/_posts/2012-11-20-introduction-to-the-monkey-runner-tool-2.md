@@ -12,7 +12,7 @@ categories:
 Hi everyone welcome and in my blog for this post dedicated to Monkey Runner ([Introduction by Google here][1]). This post could be the extension of the first, which one was about Monkey ([link here][2]).   
   
 This post won’t be a course but an introduction, because the aim is to discover by yourself how much this tool can be powerful. Monkey Runner is a tool which let the developer create programs which control the connected device/emulator.These programs will be developed in Python, and can install, launch and manipulate apps, and take screenshots. This is what we need to complete a Ant script which could build and sign the app for example. Indeed, if you have many applications, automate builds/tests, etc. becomes very interesting in order to gain time.. and also because letting the computer to do all the job is pretty exciting!   
-  
+<!-- more -->  
 Stop talking, and let’s go. The API is contained in three modules which are:
 
  [1]: http://developer.android.com/tools/help/monkeyrunner_concepts.html

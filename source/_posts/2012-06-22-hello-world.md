@@ -15,7 +15,7 @@ categories:
 ---
 # 
 `//TODO`
-
+<!-- more -->
 Bonjour et bienvenue à tous sur mon blog, entièrement dédié au développement d’applications Android.
 
 Pour ce qui est de la présentation, me voilà :

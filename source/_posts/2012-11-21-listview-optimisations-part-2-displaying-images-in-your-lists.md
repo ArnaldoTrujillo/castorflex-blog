@@ -15,6 +15,7 @@ This second post about listview optimisations will talk about the images in your
 
  [1]: http://antoine-merle.com/listview-optimisations-part-1-the-viewholder/ "ListView optimisations : Part 1 (the ViewHolder)"
 
+<!-- more -->
 ## I.    The ImageLoader
 
 We will create a class which will do all the job (here is the skeleton):
