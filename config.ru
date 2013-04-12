@@ -4,10 +4,6 @@ require 'sinatra/base'
 # The project root directory
 $root = ::File.dirname(__FILE__)
 
-use Rack::Rewrite do
-    r301 %r{/fr/?$}, '/'
-end
-
 class SinatraStaticServer < Sinatra::Base
 
   get(/.+/) do
