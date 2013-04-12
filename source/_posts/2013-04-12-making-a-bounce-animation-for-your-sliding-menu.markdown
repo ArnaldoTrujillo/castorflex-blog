@@ -9,16 +9,17 @@ categories: Animations
 
 The Sliding Menu, aka Fly in App Menu, appeared about one year ago (`@see` [Prixing], [Facebook], etc.). Because of the ease of use and the effectiveness, the users quickly adopted this UI pattern. You can read more about this pattern [here][sliding menu pattern].
 
-One of the cons of this pattern is the fact that it's hidden, so you need to inform the user he can open it. There is many way to do this, such as guides, but there is a convenient way to do this, which is a bounce animation when the application is first launched. That's what we are going to talk.
+One of the cons of this pattern is the fact that it's hidden, so you need to inform the user he can open it. There is many ways to do this, such as guides, but there is a convenient way to do this, which is a bounce animation when the application is first launched. That's what we are going to talk.
 
 <!-- more -->
 
-The bounce animation is used by Prixing, and I think this is a very good way to make the user discover the menu, because it does not require any popups, tutorials, or whatever that can be so annoying. If you do not know what I am talking about, I strongly suggest you to download Prixing and look at the first launch.
+The bounce animation is used by Prixing, and I think this is a very good way to make the user discover the menu, because it does not require any popups, tutorials, or whatever that can be so annoying for the user. If you do not know what I am talking about, I strongly suggest you to download Prixing and look at the first launch.
 
 Interpolators
 -------------
-From the doc:
->	An interpolator defines the rate of change of an animation. This allows the basic animation effects (alpha, scale, translate, rotate) to be accelerated, decelerated, repeated, etc.
+From the [DOC][Interpolator Doc]:
+
+> An interpolator defines the rate of change of an animation. This allows the basic animation effects (alpha, scale, translate, rotate) to be accelerated, decelerated, repeated, etc.
 
 But how?
 
@@ -32,7 +33,7 @@ So basically, we just have to create a custom bounce interpolator. Here is the f
 
 $$
 \begin{align}
-\mbox f(t) = \{abs(sin(pi * (t+1)²) * (1-t)} \\
+\mbox f(t) = abs(sin(pi * (t+1)²) * (1-t) \\
 \end{align}
 $$
 
@@ -42,7 +43,7 @@ Bounce Animation with Sliding Menu
 ----------------------------------
 This part will talk about the implementation of the bounce animation on the android lib `SlidingMenu` (credits to Jeremy Feinstein) available [on Github][SlidingMenu]. 
 
-This lib uses a scroller to slide the menu. The problem with this class is that you need to give a final position, which will be used at the end of the animation. You cannot pass 0 as a final position because the interpolated values will all be equals to 0, and if you pass something else, the final position of your menu will be wrong. Basically, you need a custom scroller. Unfortunately, some methods required are final, so you need to rewrite all the scroller class.
+This lib uses a `Scroller` to make the menu slide. The problem with this class is that you need to give a final position, which will be used at the end of the animation. You cannot pass 0 as a final position because the interpolated values will all be equals to 0, and if you pass something else, the final position of your menu will be wrong. Basically, you need a custom scroller. Unfortunately, some methods required are final, so you need to rewrite all the scroller class.
 
 Just use the following CustomScroller:
 
@@ -632,13 +633,14 @@ and the following on the `completeScroll` method:
 mBounceScroller.abortAnimation();
 ```
 
-You should no be able to call `mSlidingMenu.scrollWithBounceInterpolator()` from your activity!
+You should now be able to call `mSlidingMenu.scrollWithBounceInterpolator()` from your activity!
 
 Conclusion
 ----------
 
 The sources of my posts are on [Github], so do not hesitate to contribute by making pull requests, etc.
 
+[Interpolator Doc]: http://developer.android.com/reference/android/view/animation/Interpolator.html
 [Github]: https://github.com/castorflex/castorflex-blog/blob/master/source/_posts/2013-04-12-making-a-bounce-animation-for-your-sliding-menu.markdown
 [SlidingMenu]: https://github.com/jfeinstein10/SlidingMenu
 [Prixing]: https://play.google.com/store/apps/details?id=fr.epicdream.beamy
