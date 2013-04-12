@@ -1,0 +1,19 @@
+---
+layout: post
+title: "Makeover"
+date: 2013-04-12 13:24
+comments: true
+categories: 
+---
+
+This small post, just to inform you that I just moved my blog from wordpress to this awesome [Octopress], with [Slash] theme.
+
+I know I didn't posted any tuts for a long time, but I hope this makeover will motivated me again.
+Due to some laziness and limitations, my next posts will be english only.
+
+This blog is now available on [github], so do not hesitate to make some pull requests if you want to contrib, or fork it =)
+
+
+[Octopress]: http://octopress.org/
+[Slash]: https://github.com/tommy351/Octopress-Theme-Slash
+[github]: https://github.com/castorflex/castorflex-blog
