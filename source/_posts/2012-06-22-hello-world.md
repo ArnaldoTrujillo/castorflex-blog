@@ -14,7 +14,8 @@ categories:
   - Uncategorized
 ---
 # 
-`//TODO`
+`//TODO, this is not interesting`
+
 <!-- more -->
 Bonjour et bienvenue à tous sur mon blog, entièrement dédié au développement d’applications Android.
 

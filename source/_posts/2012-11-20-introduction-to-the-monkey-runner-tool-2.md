@@ -4,6 +4,8 @@ author: Antoine Merle
 layout: post
 comments: true
 permalink: /introduction-to-the-monkey-runner-tool-2/
+description: "Tutorial: first steps with monkey runner tool"
+keywords: "android, tutorial, monkey, monkey runner, monkeyRunner, tool"
 categories:
   - Tests
 ---
@@ -11,7 +13,7 @@ categories:
 
 Hi everyone welcome and in my blog for this post dedicated to Monkey Runner ([Introduction by Google here][1]). This post could be the extension of the first, which one was about Monkey ([link here][2]).   
   
-This post won’t be a course but an introduction, because the aim is to discover by yourself how much this tool can be powerful. Monkey Runner is a tool which let the developer create programs which control the connected device/emulator.These programs will be developed in Python, and can install, launch and manipulate apps, and take screenshots. This is what we need to complete a Ant script which could build and sign the app for example. Indeed, if you have many applications, automate builds/tests, etc. becomes very interesting in order to gain time.. and also because letting the computer to do all the job is pretty exciting!   
+This post won’t be a course but an introduction, because the aim is to discover by yourself how much this tool can be powerful. Monkey Runner is a tool which let the developer create programs which control the connected device/emulator.These programs will be developed in Python, and can install, launch and manipulate apps, and take screenshots. This is what we need to complete a Ant script which could build and sign the app for example. Indeed, if you have many applications, automate builds/tests, etc. becomes very interesting in order to gain time... and also because letting the computer to do all the job is pretty exciting!   
 <!-- more -->  
 Stop talking, and let’s go. The API is contained in three modules which are:
 
@@ -27,41 +29,42 @@ Stop talking, and let’s go. The API is contained in three modules which are:
  [5]: http://developer.android.com/tools/help/MonkeyImage.html
 
 Let’s create our monkeyrunner file, call it *mymonkey.py* for example (*.py* because I need my syntax coloring on vim :p)
+
 ```python
-    from com.android.monkeyrunner import MonkeyRunner, MonkeyDevice
-    import commands
-    import sys
+from com.android.monkeyrunner import MonkeyRunner, MonkeyDevice
+import commands
+import sys
+    
+# starting script
+print "start"
      
-    # starting script
-    print "start"
+# connection to the current device, and return a MonkeyDevice object
+device = MonkeyRunner.waitForConnection()
      
-    # connection to the current device, and return a MonkeyDevice object
-    device = MonkeyRunner.waitForConnection()
+apk_path = device.shell('pm path com.myapp')
+if apk_path.startswith('package:'):
+    print "myapp already installed."
+else:
+    print "myapp not installed, installing APKs..."
+    device.installPackage('myapp.apk')
+    
+print "launching myapp..."
+device.startActivity(component='com.myapp/com.myapp.MainActivity')
      
-    apk_path = device.shell('pm path com.myapp')
-    if apk_path.startswith('package:'):
-        print "myapp already installed."
-    else:
-        print "myapp not installed, installing APKs..."
-        device.installPackage('myapp.apk')
+#screenshot
+MonkeyRunner.sleep(1)
+result = device.takeSnapshot()
+result.writeToFile('./screenshots/splash.png','png')
+print "screen 1 taken"
      
-    print "launching myapp..."
-    device.startActivity(component='com.myapp/com.myapp.MainActivity')
+#sending an event which simulate a click on the menu button
+device.press('KEYCODE_MENU', MonkeyDevice.DOWN_AND_UP)
      
-    #screenshot
-    MonkeyRunner.sleep(1)
-    result = device.takeSnapshot()
-    result.writeToFile('./screenshots/splash.png','png')
-    print "screen 1 taken"
-     
-    #sending an event which simulate a click on the menu button
-    device.press('KEYCODE_MENU', MonkeyDevice.DOWN_AND_UP)
-     
-    print "end of script"
+print "end of script"
 ```
 To launch this script you only have to execute this command:
 
-    monkeyrunner mymonkey.py
+`monkeyrunner mymonkey.py`
 
 ***Note 1***: *The monkeyrunner command is situated in [android-sdk-path]/tools/*   
   

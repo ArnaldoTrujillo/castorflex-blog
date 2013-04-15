@@ -4,6 +4,8 @@ author: Antoine Merle
 layout: post
 comments: true
 permalink: /using-monkey-tool/
+keywords: "android, monkey, tool, monkey tool, tutorial, get started"
+description: "Get started with Monkey tool for Android"
 categories:
   - Tests
 ---
