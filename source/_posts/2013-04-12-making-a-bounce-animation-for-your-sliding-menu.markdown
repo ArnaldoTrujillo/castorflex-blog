@@ -4,6 +4,10 @@ title: "Making a bouncing animation for your sliding menu"
 date: 2013-04-12 13:35
 comments: true
 categories: Animations
+description: "This article will show you a way to introduce your sliding
+menu with a bouncing animation"
+keywords: "sliding menu, android, bounce, bouncing, bouncing animation,
+fly-in-app menu, fly in app menu, animation, scroller, custom scroller"
 ---
 
 
@@ -29,7 +33,7 @@ There is some native interpolators:
 
 {% img center /images/interpolators.png %}
 
-So basically, we just have to create a custom bounce interpolator. Here is the function:
+The problem here with the sdk interpolators, is that they create values from 0 (for t=0) to x (for t=1). As the sliding menu needs to be closed at the end of the animation, we need to create a custom bounce interpolator. Here is the function:
 
 $$
 \begin{align}
@@ -43,9 +47,21 @@ Bouncing Animation with Sliding Menu
 ----------------------------------
 This part will talk about the implementation of the bouncing animation on the android lib `SlidingMenu` (credits to Jeremy Feinstein) available [on Github][SlidingMenu]. 
 
-This lib uses a `Scroller` to make the menu slide. The problem with this class is that you need to give a final position, which will be used at the end of the animation. You cannot pass 0 as a final position because the interpolated values will all be equals to 0, and if you pass something else, the final position of your menu will be wrong. Basically, you need a custom scroller. Unfortunately, some methods required are final, so you need to rewrite all the scroller class.
+This lib uses a `Scroller` to make the menu slide. The problem with this class is that it requires a final position, used for the interpolation AND for the end of the animation:
 
-Just use the following CustomScroller:
+```java
+//in computeScrollOffset method 	
+if (timePassed < mDuration) {
+	//...
+}else{
+	//end of the animation
+	mCurrX = mFinalX;
+    mCurrY = mFinalY;
+    mFinished = true;
+}
+```
+
+We do not want to set the final position at the end of the animation, but 0. The easier way to do this (I think) is to rewrite the scroller class like this:
 
 ```java
 import android.content.Context;
