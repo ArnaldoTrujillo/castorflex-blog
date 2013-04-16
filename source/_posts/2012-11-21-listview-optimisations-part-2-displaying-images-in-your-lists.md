@@ -99,7 +99,7 @@ public class ImageLoader {
      
         private LruCache memoryCache;
         private FileCache fileCache;
-        private Map imageViews = [Collections][6].synchronizedMap(new WeakHashMap());
+        private Map imageViews = Collections.synchronizedMap(new WeakHashMap());
      
         private Drawable mStubDrawable;
      
