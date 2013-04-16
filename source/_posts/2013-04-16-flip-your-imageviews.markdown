@@ -8,7 +8,7 @@ description: "This tutorial will show you how to flip your ImageViews on Android
 keywords: "android, flip, imageview, drawable, view, image view, image, animation, flipimageview, image view animation, imageview animation"
 ---
 
-This post will be cut in two parts. In the first part, I'll present my small android library [FlipImageView] which allows you to create easily an `ImageView` which can flip into another `Drawable`. Then I'll show you how the animation is performed and how you can modify it.
+This post will be cut in two parts. In the first part, I'll present my small android library [FlipImageView] which allows you to create easily an `ImageView` which can turn into another `Drawable`. Then I'll show you how the animation is performed and how you can modify it.
 
 You can download a sample app [on the store][playstore] if you want to see what it looks like.
 
