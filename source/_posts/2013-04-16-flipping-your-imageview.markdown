@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Flipping your ImageView"
+title: "Flip your ImageViews"
 date: 2013-04-16 20:06
 comments: true
 categories: Animations
