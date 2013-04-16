@@ -76,7 +76,61 @@ I strongly recommend you to play with existing `interpolators` (bounce/overshoot
 How does this work?
 -------------------
 
+Here is the transformation part:
 
+```java
+@Override
+protected void applyTransformation(float interpolatedTime, Transformation t) {
+    // Angle around the y-axis of the rotation at the given time. It is
+    // calculated both in radians and in the equivalent degrees.
+    final double radians = Math.PI * interpolatedTime;
+    float degrees = (float) (180.0 * radians / Math.PI);
+
+    // Once we reach the midpoint in the animation, we need to hide the
+    // source view and show the destination view. We also need to change
+    // the angle by 180 degrees so that the destination does not come in
+    // flipped around.
+    if (interpolatedTime >= 0.5f) {
+        degrees -= 180.f;
+
+        if (!visibilitySwapped) {
+            setImageDrawable(toDrawable);
+            visibilitySwapped = true;
+        }
+    }
+
+    if (mIsRotationReversed) {
+        degrees = -degrees;
+    }
+
+    final Matrix matrix = t.getMatrix();
+
+    camera.save();
+    //We make a small translation in z axis, this is a cool effect :)
+    //Note that you can custom this too, by making a translation in the 
+    // other direction for example, to make the image move in the foreground
+    camera.translate(0.0f, 0.0f, (float) (150.0 * Math.sin(radians)));
+    
+    //rotations
+    camera.rotateX(mIsRotationXEnabled ? degrees : 0);
+    camera.rotateY(mIsRotationYEnabled ? degrees : 0);
+    camera.rotateZ(mIsRotationZEnabled ? degrees : 0);
+    camera.getMatrix(matrix);
+    camera.restore();
+
+    matrix.preTranslate(-centerX, -centerY);
+    matrix.postTranslate(centerX, centerY);
+}
+```
+
+Well, I think the code is pretty clear (I added some comments too). Do not hesitate to custom the animation by trying some interpolators or modifying directly the `applyTransformation` method!
+
+Conclusion
+----------
+
+This was a pretty short post to introduce my lib, but I'm sure some guys will be happy to discover that kind of small tricks which can make your app better. But however, please do not make all your controls animated, just when needed, or you will have a sooooo annoyinnng app.
+
+Do not hesitate to contribute to the [Lib][FlipImageView] or to this [Post][Blog] by leaving comments or making pull requests. Thanks!
 
 
 [FlipImageView]: https://github.com/castorflex/FlipImageView
