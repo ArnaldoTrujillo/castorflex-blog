@@ -1,1 +1,3 @@
-You should not look at this, this is not really interesting…
+Sources for my [octopress blog]
+
+[octopress blog]: http://castorflex.github.io
