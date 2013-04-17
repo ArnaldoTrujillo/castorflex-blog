@@ -17,11 +17,11 @@ You can download a sample app [on the store][playstore] if you want to see what 
 FlipImageView Library
 ---------------------
 
-As I needed it, I created a few time ago a very small lib called `FlipImageView` available on [Github][FlipImageView]. This lib is based on [FlipAnimator], made by Coomar, so all credits goes to him.
+As I needed it, I recently created a very small lib called `FlipImageView` available on [Github][FlipImageView]. This lib is based on [FlipAnimator], made by Coomar, so all credits goes to him.
 
 `FlipImageView extends ImageView`, that means if you have your own custom `ImageView`, I suggest you to extend `FlipImageView`, or look at the source code and take the animation part.
 
-There is two ways to create your FlipImageView:
+There are two ways to create your FlipImageView:
 
 -	Via XML
 
@@ -128,7 +128,7 @@ Well, I think the code is pretty clear (I added some comments too). Do not hesit
 Conclusion
 ----------
 
-That was a pretty short post to introduce my lib, but I'm sure some guys will be happy to discover that kind of small tricks which can make your app better. But however, please do not make all your controls animated, just when needed, or you will have a sooooo annoyinnng app.
+That was a pretty short post to introduce my lib, but I'm sure some guys will be happy to discover that kind of small tricks which can make your app better. But however, please do not make all your controls animated, just when needed, or your app will be really annoying.
 
 Do not hesitate to contribute to the [Lib][FlipImageView] or to this [article][Blog] by leaving comments or making pull requests. Thanks!
 
