@@ -133,7 +133,7 @@ That was a pretty short post to introduce my lib, but I'm sure some guys will be
 Do not hesitate to contribute to the [Lib][FlipImageView] or to this [article][Blog] by leaving comments or making pull requests. Thanks!
 
 
-[Blog]: https://github.com/castorflex/castorflex-blog/blob/master/source/_posts/2013-04-16-flipping-your-imageview.markdown
+[Blog]: https://github.com/castorflex/castorflex-blog/blob/master/source/_posts/2013-04-16-flip-your-imageviews.markdown
 [FlipImageView]: https://github.com/castorflex/FlipImageView
 [FlipAnimator]: https://code.google.com/p/myandroidwidgets/source/browse/trunk/FlipAnimatorExample/src/com/beanie/examples/animation/FlipAnimator/FlipAnimator.java
 [playstore]: https://play.google.com/store/apps/details?id=fr.castorflex.android.flipimageview
