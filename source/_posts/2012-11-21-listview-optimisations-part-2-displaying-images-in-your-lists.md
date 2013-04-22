@@ -61,13 +61,13 @@ public class MyAdapter extends BaseAdapter {
         }
      
         @Override
-        public View getView(int position, View view, ViewGroup viewGroup) {
+        public View getView(int position, View view, ViewGroup parent) {
      
             View vi = view;             
             ViewHolder holder = null;
      
             if (vi == null) {
-                vi = mLayoutInflater.inflate(R.layout.item, null);
+                vi = mLayoutInflater.inflate(R.layout.item, parent, false);
                 holder = new ViewHolder();
      
                 holder.ivIcon = (ImageView) vi.findViewById(R.id.imageView_item_icon);

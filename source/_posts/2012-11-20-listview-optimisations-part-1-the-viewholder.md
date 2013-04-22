@@ -22,9 +22,9 @@ Here is an example of a basic custom adapter, providing elements with a name and
     public class MyAdapter extends BaseAdapter {
      
         private LayoutInflater mLayoutInflater;
-        private [List][1] mData;
+        private List mData;
      
-        public MyAdapter([Context][2] context, [List][1] data){
+        public MyAdapter(Context context, List data){
             mData = data;
             mLayoutInflater = LayoutInflater.from(context);
         }
@@ -45,10 +45,10 @@ Here is an example of a basic custom adapter, providing elements with a name and
         }
      
         @Override
-        public View getView(int position, View view, ViewGroup viewGroup) {
+        public View getView(int position, View view, ViewGroup parent) {
      
             //This is bad, do not do this at home
-            View vi = mLayoutInflater.inflate(R.layout.item, null);
+            View vi = mLayoutInflater.inflate(R.layout.item, parent, false);
      
             TextView tvName = (TextView) vi.findViewById(R.id.textView_item_name);
             TextView tvDescription = (TextView) vi.findViewById(R.id.textView_item_description);
@@ -70,41 +70,42 @@ That is the code we could make when we don’t know that listviews recycle their
 We will write a class (called ViewHolder) in which references between the widgets will be saved :
 
 ```java
-    static class ViewHolder{
-            TextView tvName;
-            TextView tvDescription;
-        }
+static class ViewHolder{
+    TextView tvName;
+    TextView tvDescription;
+}
 ```
 And the adapter :
+
 ```java
-    @Override
-        public View getView(int position, View view, ViewGroup viewGroup) {
-     
-            View vi = view;             //trying to reuse a recycled view
-            ViewHolder holder = null;
-     
-            if (vi == null) {
-                //The view is not a recycled one: we have to inflate
-                vi = mLayoutInflater.inflate(R.layout.item, null);
-                holder = new ViewHolder();
-     
-                holder.tvName = (TextView) vi.findViewById(R.id.textView_item_name);
-                holder.tvDescription = (TextView) vi.findViewById(R.id.textView_item_description);
-                vi.setTag(holder);
-            } else {
-                // View recycled !
-                // no need to inflate
-                // no need to findViews by id
-                holder = (ViewHolder) vi.getTag();
-            }
-     
-            MyPojo item = getItem(position);
-     
-            holder.tvName.setText(item.getName());
-            holder.tvDescription.setText(item.getDescription());
-     
-            return vi;
-        }
+@Override
+public View getView(int position, View view, ViewGroup parent) {
+
+	View vi = view;             //trying to reuse a recycled view
+	ViewHolder holder = null;
+
+	if (vi == null) {
+		//The view is not a recycled one: we have to inflate
+		vi = mLayoutInflater.inflate(R.layout.item, parent, false);
+		holder = new ViewHolder();
+
+		holder.tvName = (TextView) vi.findViewById(R.id.textView_item_name);
+		holder.tvDescription = (TextView) vi.findViewById(R.id.textView_item_description);
+		vi.setTag(holder);
+	} else {
+		// View recycled !
+		// no need to inflate
+		// no need to findViews by id
+		holder = (ViewHolder) vi.getTag();
+	}
+
+	MyPojo item = getItem(position);
+
+	holder.tvName.setText(item.getName());
+	holder.tvDescription.setText(item.getDescription());
+
+	return vi;
+}
 ```
 If you want to add other widgets in your elements (an image for example), you will have to add them in the ViewHolder too.
 
