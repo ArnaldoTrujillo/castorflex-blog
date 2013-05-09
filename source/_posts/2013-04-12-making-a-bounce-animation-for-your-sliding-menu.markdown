@@ -611,7 +611,7 @@ public void scrollWithBounceInterpolator(){
 
 ```java
 public void scrollWithBounceInterpolator() {
-	int x = MeasuresUtils.DpToPx(getMeasuredWidth());
+	int x = mViewBehind.getBehindWidth(); //or whatever you want :D
 	int y = 0;
 	if (getChildCount() == 0) {
 		// Nothing to do.
