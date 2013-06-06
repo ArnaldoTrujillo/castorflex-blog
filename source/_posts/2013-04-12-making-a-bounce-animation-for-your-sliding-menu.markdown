@@ -19,7 +19,7 @@ One of the cons of this pattern is the fact that it's hidden, so you need to inf
 
 The bouncing animation is used by Prixing, and I think this is a very good way to make the user discover the menu, because it does not require any popups, tutorials, or whatever that can be so annoying for the user. If you do not know what I am talking about, I strongly suggest you to download Prixing and look at the first launch.
 
-I made a sample apk showing this effect. This should be available [here](apk).
+I made a sample apk showing this effect. This should be available [here][apk].
 
 Interpolators
 -------------
