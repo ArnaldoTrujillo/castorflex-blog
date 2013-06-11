@@ -3,9 +3,9 @@ layout: post
 title: "Making a multiple view types Adapter with Annotations"
 date: 2013-06-11 19:49
 comments: true
-categories: Adapter
 description: "In this post, I will show you a different way to create a multiple view types adapter. I will use a custom adapter and java annotations."
 keywords: "android, java, annotation, annotations, multiple view types, different row, adapter, custom adapter, listview, baseadapter"
+categories: [Adapter, Listview]
 ---
 
 
@@ -123,13 +123,22 @@ Annotations
 =========== 
 Annotations are created with the `@interface` keyword. For each annotation you can define some parameters:
 
-- The target (`@Target`), can specify the place your annotation can be used(as a class header, method header, etc.).
+- `@Target` can specify the place your annotation can be used (as a class header, method header, etc.).
 
-- The retention (`@Retention`) specify how long your annotation will live. It can be `SOURCE`, `CLASS` or `RUNTIME`. Since we will use reflection, we need the `RUNTIME` parameter.
+- `@Retention` specify how long your annotation will live. It can be `SOURCE`, `CLASS` or `RUNTIME`. 
+ 1. `SOURCE`: The annotations are not saved in `*.class` files. 
+ 2. `CLASS`:  The annotations are saved in `*.class` files, but can't be used by the VM. *(default parameter)*
+ 3. `RUNTIME`: Annotations save in `*.class` and can be used in runtime. Since we will use reflection, we need this parameter.
 
- We will need 2 different annotations. One for the different `DelegateAdapters` we want to use and one for the itemType. Please note that I'm showing you one way to this do but there are plenty.
+Please note that I'm showing you one way to do this but there are plenty.
 
-This is the way I did it:
+
+We will need 2 different annotations:
+
+- `@DelegateAdapters`: used on our `BaseAdapter` to indicate which adapters to delegate the `getView`. It will take the delegate classes as parameter.
+
+- `@DelegateAdapterType`: used on our `DelegateAdapter`s implementations. This annotation take as parameter his `itemViewType` associated.
+
 
 `DelegateAdapters` Annotation:
 
@@ -240,7 +249,7 @@ private void initDelegates(){
 Conclusion
 ==========
 
-I hope you found it as interesting as I do. Please note this is my first custom annotation, so don't hesitate to tell me (via comments / g+ / twitter, etc.) if you have any remark.
+I hope you found it interesting. Please note this is my first custom annotation, so don't hesitate to tell me (via comments / g+ / twitter, etc.) if you have any remark.
 
 
 

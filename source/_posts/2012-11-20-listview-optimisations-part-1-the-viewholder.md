@@ -6,8 +6,7 @@ comments: true
 permalink: /listview-optimisations-part-1-the-viewholder/
 description: "Make your listview smoother with these tutorials. Part 1: ViewHolder"
 keywords: "android, listview, smooth, optimization, tutorial, viewholder, getview"
-categories:
-  - Listview
+categories: [Adapter, Listview]
 ---
 # 
 

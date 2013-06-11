@@ -6,8 +6,7 @@ comments: true
 permalink: /listview-optimisations-part-2-displaying-images-in-your-lists/
 description: "This second post about listview optimisations will talk about the images in your lists. This post is an extension of the first, which one was about the viewholder."
 keywords: "android, listview, image, images, custom adapter, adapter, imageview, smooth, optimization"
-categories:
-  - Listview
+categories: [Adapter, Listview]
 ---
 # 
 
