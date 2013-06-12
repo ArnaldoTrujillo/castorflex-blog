@@ -222,18 +222,10 @@ private void initDelegates(){
 				throw new RuntimeException("The item type "+itemtype+" is already defined!");
 			}
 			
-			//We use the default constructor in this example
-			Constructor<?> constructor = null;
-			try {
-				constructor = clazz.getConstructor(new Class[]{});
-			} catch (NoSuchMethodException e) {
-				throw new RuntimeException("The class "+clazz.getName()+" doesn't have any default public constructor");
-			}
-			
-			//instantiate
+			//instantiate with the default constructor
 			DelegateAdapter adapter = null;
 			try {
-				adapter = (DelegateAdapter) constructor.newInstance(new Object[]{});
+				adapter = (DelegateAdapter) clazz.newInstance();
 			} catch (Exception e) {
 				throw new RuntimeException("Error while instanciating "+clazz+" with default constructor: "+e.getMessage(), e);
 			}
