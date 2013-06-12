@@ -214,7 +214,7 @@ private void initDelegates(){
 			DelegateAdapterType delegateAdapterAnnotation = clazz.getAnnotation(DelegateAdapterType.class);
 			//check if each delegate has an itemType
 			if(delegateAdapterAnnotation == null){
-				throw new RuntimeException("The class "+clazz.getName()+" should have the annotation DelegateAdapterField");
+				throw new RuntimeException("The class "+clazz.getName()+" should have the annotation DelegateAdapterType");
 			}
 			
 			long itemtype = delegateAdapterAnnotation.itemType();
@@ -227,7 +227,7 @@ private void initDelegates(){
 			try {
 				adapter = (DelegateAdapter) clazz.newInstance();
 			} catch (Exception e) {
-				throw new RuntimeException("Error while instanciating "+clazz+" with default constructor: "+e.getMessage(), e);
+				throw new RuntimeException("Error while instantiating "+clazz.getName()+" with default constructor: "+e.getMessage(), e);
 			}
 
 			//final step!
