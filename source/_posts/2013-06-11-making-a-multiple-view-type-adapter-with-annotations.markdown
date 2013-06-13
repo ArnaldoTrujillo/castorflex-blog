@@ -11,6 +11,8 @@ categories: [Adapter, Listview]
 
 This post is more an introduction to java annotations than a tutorial about how to create an adapter able to show different rows. I won't describe how to implement a custom `Adapter`. Indeed, `ListView`s and `Adapter`s are common things in Android and you can easily find a [tutorial][ViewHolder tutorial] about such components.
 
+TLDR: I made a [GIST].
+
 <!-- more -->
 
 Delegates
@@ -243,6 +245,7 @@ Conclusion
 
 I hope you found it interesting. Please note this is my first custom annotation, so don't hesitate to tell me (via comments / g+ / twitter, etc.) if you have any remark.
 
+TLDR: I made a [GIST]. Check it out and don't hesitate to modify it!
 
 
 
@@ -250,5 +253,6 @@ I hope you found it interesting. Please note this is my first custom annotation,
 
 
 
+[GIST]:https://gist.github.com/castorflex/5776863
 [LongSparseArray]:http://developer.android.com/reference/android/support/v4/util/LongSparseArray.html
 [ViewHolder tutorial]:http://castorflex.github.io/listview-optimisations-part-1-the-viewholder/
