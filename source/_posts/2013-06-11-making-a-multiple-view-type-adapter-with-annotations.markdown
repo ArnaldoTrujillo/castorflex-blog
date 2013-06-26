@@ -4,7 +4,7 @@ title: "Making a multiple view types Adapter with Annotations"
 date: 2013-06-11 19:49
 comments: true
 description: "In this post, I will show you a different way to create a multiple view types adapter. I will use a custom adapter and java annotations."
-keywords: "android, java, annotation, annotations, multiple view types, different row, adapter, custom adapter, listview, baseadapter"
+keywords: "android, java, annotation, annotations, multiple view types, different row, adapter, custom adapter, listview, baseadapter, android create annotation, tutorial, tut"
 categories: [Adapter, Listview]
 ---
 
