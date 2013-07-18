@@ -3,12 +3,12 @@ layout: post
 title: "Adding a Foreground Selector to a View/ViewGroup"
 date: 2013-07-17 23:34
 comments: true
-keywords: "android, selector, foreground, card, cards, android add foreground selector, touch feedback"
-description: "You will see in this post how to implement a foreground selector for either a ViewGroup or a basic View in Android."
+keywords: "android, selector, foreground, background, card, cards, android add foreground selector, touch feedback, google play"
+description: "You will see in this post how to implement a foreground selector for either a ViewGroup or a basic View in Android. This effect is often used in Android cards (e.g. in the play store) and is a great touch feedback."
 categories: [UI/UX]
 ---
 
-Everyone has already seen the android cards touch feedback. The selector is drawn in the foreground instead of in the background (as we usually implement it). This effect is in fact pretty simple (and in some cases, basic) to implement.
+Everyone has already seen the android cards touch feedback. The selector is drawn in the foreground instead of in the background (as we usually implement it). This effect is in fact pretty simple to implement, and is already implemented in some cases.
 
 Here is a screenshot of the press state effect in the Google Play app:
 
@@ -25,15 +25,7 @@ This is the easiest way to add a foreground selector because there is a [method]
 II. If your view is not a `FrameLayout`
 ====================================
 
-Don't worry, this is pretty simple. Basically, we just have to set right state to the selector (pressed, focused, etc.), set the bounds and draw it after the view itself. In that way, the selector will be drawn after, and as a consequence, over. 
-
-###Setting the callback
-
-You first need to set your selector's callback:
-
-```java
-mForegroundSelector	.setCallback(this);
-```
+Don't worry, this is pretty simple. Basically, we just have to set right state to the selector (pressed, focused, etc.), set the bounds and draw it after the view itself. In that way, the selector will be drawn after, and as a consequence, over the view. 
 
 ###Changing the state
 
@@ -58,9 +50,9 @@ A method is called each time the size of the view changes. This method is `onSiz
 ```java
 @Override
 protected void onSizeChanged(int width, int height, int oldwidth, int oldheight) {
-	super.onSizeChanged(w, h, oldw, oldh);
+	super.onSizeChanged(width, height, oldwidth, oldheight);
 
-	mForegroundSelector.setBounds(0, 0, w, h);
+	mForegroundSelector.setBounds(0, 0, width, height);
 }
 ```
 
@@ -68,7 +60,9 @@ protected void onSizeChanged(int width, int height, int oldwidth, int oldheight)
 
 There is 2 cases:
 
-1.	Your view is a **not** a `ViewGroup`: the selector has to be drawn after calling `onDraw(Canvas canvas)`
+####1.	Your view is a **not** a `ViewGroup` 
+
+The selector has to be drawn after calling `onDraw(Canvas canvas)`
 
 ```java
 @Override
@@ -79,7 +73,10 @@ protected void onDraw(Canvas canvas) {
 }
 ```
 
-2.	Your view is a `ViewGroup`: the selector has to be drawn after calling `dispatchDraw(Canvas canvas)`
+####2.	Your view is a `ViewGroup`
+
+
+The selector has to be drawn after all his children, that means after calling `dispatchDraw(Canvas canvas)`
 
 ```java
 @Override
@@ -90,6 +87,10 @@ protected void dispatchDraw(Canvas canvas) {
 }
 ```
 
+Conclusion
+==========
+
+I made here a very basic example of how to add a foreground selector to a custom view, with the main methods. To see a complete implementation (Callback, paddings, etc.), you can look at the source code of FrameLayout.
 
 
 
