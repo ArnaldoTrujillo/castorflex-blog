@@ -87,10 +87,122 @@ protected void dispatchDraw(Canvas canvas) {
 }
 ```
 
+Drawing an animated Drawable
+============================
+
+If your drawable is animated, there is a bit more to do. Let's suppose that we have a selector with the attribute `android:exitFadeDuration`. That means when the selector changes its state, the old state will fade out.
+
+We first have to move the draw method of the selector from `onDraw()` (for views) or `dispatchDraw()` (for ViewGroups) to the `draw(Canvas)` method, just like this:
+
+```java
+@Override
+public void draw(Canvas canvas) {
+  super.draw(canvas);
+
+  mForegroundDrawable.draw(canvas);
+}
+```
+
+Then we have to Override `jumpDrawablesToCurrentState` to indicate our selector to do transition animations between states, and `verifyDrawable` to indicate the view we are displaying our own drawable.
+
+```java
+@Override
+protected boolean verifyDrawable(Drawable who) {
+  return super.verifyDrawable(who) || (who == mForegroundDrawable);
+}
+
+@TargetApi(11)
+@Override
+public void jumpDrawablesToCurrentState() {
+  super.jumpDrawablesToCurrentState();
+  mForegroundDrawable.jumpToCurrentState();
+}
+```
+
+But what is doing jumpToCurrentState()? Let's see a bit of source code, in the `DrawableContainer` class.
+
+```java
+@Override
+public void jumpToCurrentState() {
+    boolean changed = false;
+    if (mLastDrawable != null) {
+        mLastDrawable.jumpToCurrentState();
+        mLastDrawable = null;
+        changed = true;
+    }
+    if (mCurrDrawable != null) {
+        mCurrDrawable.jumpToCurrentState();
+        mCurrDrawable.mutate().setAlpha(mAlpha);
+    }
+    if (mExitAnimationEnd != 0) {
+        mExitAnimationEnd = 0;
+        changed = true;
+    }
+    if (mEnterAnimationEnd != 0) {
+        mEnterAnimationEnd = 0;
+        changed = true;
+    }
+    if (changed) {
+        invalidateSelf();
+    }
+}
+```
+
+We can notice that `jumpToCurrentState()` calls `invalidateSelf()`. And here is the `invalidateSelf()` method source code:
+
+```java
+/**
+ * Use the current {@link Callback} implementation to have this Drawable
+ * redrawn.  Does nothing if there is no Callback attached to the
+ * Drawable.
+ *
+ * @see Callback#invalidateDrawable
+ * @see #getCallback() 
+ * @see #setCallback(android.graphics.drawable.Drawable.Callback) 
+ */
+public void invalidateSelf() {
+    final Callback callback = getCallback();
+    if (callback != null) {
+        callback.invalidateDrawable(this);
+    }
+}
+```
+
+We clearly see that if the callback is not set, the drawable won't be redrawn.
+So let's set a callback when we init our selector.
+
+```java
+private void init(Context context) {
+  mForegroundDrawable = getResources().getDrawable(R.drawable.myselector);
+  
+  //set a callback, or the selector won't be animated
+  mForegroundDrawable.setCallback(this);
+}
+```
+
+Your selector should fade out now!
+
+EXTRA
+=====
+
+### 	Retrieve the background, and set it as the foreground
+
+You can get the background selector of your view and set it as your foreground selector if you want:
+
+```java
+TypedArray a = getContext().obtainStyledAttributes(new int[]{android.R.attr.selectableItemBackground});
+mForegroundDrawable = a.getDrawable(0);
+if (mForegroundDrawable != null) {
+  mForegroundDrawable.setCallback(this);
+}
+a.recycle();
+``` 
+
+
 Conclusion
 ==========
 
-I made here a very basic example of how to add a foreground selector to a custom view, with the main methods. To see a complete implementation (Callback, paddings, etc.), you can look at the source code of FrameLayout.
+I made here a basic example of how to add a foreground selector to a custom view, with the main methods. To see a complete implementation (Tests if the drawable is stateful, paddings, etc.), you can look at the source code of FrameLayout.
 
 
 
