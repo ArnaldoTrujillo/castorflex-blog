@@ -185,9 +185,9 @@ Your selector should fade out now!
 EXTRA
 =====
 
-### 	Retrieve the background, and set it as the foreground
+### 	Retrieve the default background, and set it as the foreground
 
-You can get the background selector of your view and set it as your foreground selector if you want:
+You can get the default background selector of your theme and set it as your foreground selector if you want:
 
 ```java
 TypedArray a = getContext().obtainStyledAttributes(new int[]{android.R.attr.selectableItemBackground});
