@@ -60,9 +60,9 @@ The flip animation will be launched each time you click on the image. You can of
 
 You can set a `OnFlipListener` to your FlipImageView. Three events will be triggered:
 
-1.	`onClick(boolean flipped)`: called when the imageView is clicked
-2.	`onFlipStart()` : called at the beginning of the flip animation
-3.	`onFlipEnd()`: called at the end of the animation
+1.	`onClick(FlipImageView flipImageView)`: called when the imageView is clicked
+2.	`onFlipStart(FlipImageView flipImageView)` : called at the beginning of the flip animation
+3.	`onFlipEnd(FlipImageView flipImageView)`: called at the end of the animation
 
 ***Note:*** *onFlipStart and OnFlipEnd won't be called if you disabled the flip animation.*
 
