@@ -16,6 +16,7 @@ Contact me
 -	Twitter: [ygort][1]
 -	GPlus: [Antoine Merle][2]
 -	Linkedin: [Antoine Merle][3]
+-	Viadeo: [Antoine Merle][7]
 -	Github: [Castorflex][4]
 -	StackOverflow: [CV][5] or [Profile][6]
 
@@ -26,3 +27,4 @@ Contact me
 [4]: https://github.com/castorflex
 [5]: http://careers.stackoverflow.com/antoinemerle
 [6]: http://stackoverflow.com/users/788842/cflex
+[7]: http://www.viadeo.com/profile/002xmmmotxbr8bf
