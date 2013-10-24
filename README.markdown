@@ -1,3 +1,3 @@
 Sources for my [octopress blog]
 
-[octopress blog]: http://castorflex.github.io
+[octopress blog]: http://antoine-merle.com
