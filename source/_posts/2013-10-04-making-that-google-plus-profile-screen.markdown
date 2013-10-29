@@ -9,11 +9,11 @@ keywords: "android, parallax, imageview, listview, griview, stick, sticky header
 ---
 
 
-We will see here a way to make the Google Plus profile screen. I find this screen pretty interesting (although it suffers of some minor bugs), and wanted to try to find a way to do that.
+We will see here a way to make the Google Plus profile screen. I find this screen pretty interesting (although it suffers from some minor bugs), and wanted to try to find a way to do that.
 
 {% img center /images/screen_gplus_global.png %}
 
-***Note**: I won't talk about the weird bottom bar they added just to annoy you.*
+***Note**: I won't talk about the weird bottom bar you have to use if you want to make a new post. I hate that 'quick return' bar*
 
 
 I'll cut this post in three parts:
@@ -36,13 +36,13 @@ Seems obvious we have a list at the bottom of the screen. The question is: *what
 
 I see 2 options here:
 
-1.	The header is no part of the list. That means there is a FrameLayout (or anything else) containing a header and a list (with a big padding and `clipToPadding` to false).
+1.	The header is not a header of the list. That means there is a FrameLayout (or anything else) containing a header and a list (with a big padding and `clipToPadding` set to false).
 2.	The header is included in the gridview as a HeaderView.
 
 
-Actually, there is some hints that indicates us the used method is the second one:
+Actually, there are some hints that indicate us that the second one is more plausible:
 
--	We can scroll by touching **anywhere** in the header. Hmm ok but we also could with custom views. We would probably have to override the default behavior of the tabs by overriding the `onInterceptTouchEvent` method. 
+-	We can scroll by touching **anywhere** in the header. Hmm ok but we also could with custom views. We would probably have to change the default behavior of the tabs by overriding the `onInterceptTouchEvent` and `onTouchEvent` methods. 
 -	There is the edge effect at the top of the list. However, we could put the listView over the header in order to see the edge effect. The sticky tabs would also be visible because they are drawn after the listview's `draw`. (See part 3).
 -	I think this is easier to do this way (especially if you want to be compatible pre ICS).   
 
@@ -53,7 +53,7 @@ The main xml should look like that:
 <GridView .../>
 ```
 
-Hmm ok it's a `StaggeredGridView`, but it's basically the same. Don't blame me if I call that a ListView too thereafter.
+Hmm ok it's a `StaggeredGridView`, but it's basically the same. Don't blame me if I call that a ListView or a GridView thereafter.
 
 
 The header
@@ -63,10 +63,12 @@ The header
 
 Take a look at the overdraw. The header image is light red. That means pixels are drawn four times. ouch. I'm sorry but I guess it should be blue, right? I mean, there is the activity's background, and... what else? There is obviously a perf issue here. 
 
+***Note**: If you want to know more about overdraws, read [this post][overdraw post] by [Romain Guy].*
+
 Here is an example of hierarchy you could have:
 
 ```xml
-<!-- IRL you should use styles and dimens... -->
+<!-- in a real application you should use styles and dimens... -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -165,7 +167,7 @@ public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCoun
 }
 ```
 
-This would work. BUT.
+This would work. BUT:
 
 1.	You don't support pre API14 (we don't care, but the G+ app does)
 2.	If you use a TranslateAnimation for pre ICS devices, you will have an overdraw issue.
@@ -190,7 +192,7 @@ public void draw(Canvas canvas) {
 Then change the call from `mImageView.setTranslationY(-mListView.getChildAt(0).getTop() / 2);` to `mImageView.setCurrentTranslation(mListView.getChildAt(0).getTop());`
 
 
-***EXTRA**:*
+***EXTRA 1**:*
 
 You can add a `ColorFilter` to add a nice effect on the ImageView:
 
@@ -205,7 +207,7 @@ public void setCurrentTranslation(int currentTranslation) {
 
 With this, the ImageView will be darker when you scroll.
 
-***EXTRA2**: If you want to make more parallax stuff on your apps, take a look at the [Paralloid library] by [Christopher Jenkins].*
+***EXTRA 2**: If you want to make more parallax stuff on your apps, take a look at the [Paralloid library] by [Christopher Jenkins].*
 
 The Sticky Header
 =================
@@ -240,7 +242,7 @@ You activity is composed of a FrameLayout containing a `ListView` and the sticky
 </FrameLayout>
 ```
 
-The `ListView` will contain the header, containing a dummy view. This view need to has the same height as your tabs.
+The `ListView` will contain the header, containing a dummy view. This view needs to has the same height as your tabs.
 
 ```xml
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -453,7 +455,7 @@ protected void dispatchDraw(Canvas canvas) {
 }
 ```
 
-Your tabs should sticks now but you cannot interact with them. Here is what I did, but unfortunately it doesn't work very well, as I am unable to make the fling work... If you have any idea on how to improve it, please do not hesitate to [contact me].
+Your tabs should stick now but you cannot interact with them. Here is what I did, but unfortunately it doesn't work very well, as I am unable to make the fling work... If you have any idea on how to improve it, please do not hesitate to [contact me].
 
 Firstly create an enum with the different states:	
 
@@ -516,7 +518,7 @@ If you want to use this solution, you will clearly need to improve my implementa
 
 This is not a really great way to implement the sticky tabs but this will work and you will avoid  the calls to `requestLayout()`
 
-You will need to copy paste the tabs view in the header's xml and in 
+You will need to copy paste the tabs view in the header's xml and in the main view's xml
 
 ```java
 mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
@@ -560,10 +562,24 @@ Here is the overdraw of the sticky tabs:
 We can notice the view is drawn twice, so I bet they use the solution 3 or 4.
 
 
+#CONCLUSION
+
+I showed you 4 ways to make this screen:
+
+1.	The tabs are in the main view's xml, and we use the setTranslationY method to make it move (playing with margins on pre ICS devices)
+2.	The tabs are in the listview's header, and we change the tabs container's parent when we need to stick it (but this calls requestLayout twice)
+3.	The tabs are in the listview's header, and we just redraw them over the list when we need to stick them (but the touch events are pretty hard to implement)
+4.	The tabs are both in the main view and the listview's header, and we play with setVisibility(INVISIBLE|VISIBLE), but we have a duplicated view, and we need to set clickListeners twice for each tab.
+
+
+I was incapable to find a 'good' way to implement that sticky tabs but if you have any idea, please do not hesitate to comment or contact me! And if you don't, then share it!
 
 
 
 
+[overdraw post]:http://www.curious-creature.org/2012/12/01/android-performance-case-study/
+
+[Romain Guy]:http://twitter.com/romainguy
 
 [Flavien Laurent]:http://flavienlaurent.com
 
