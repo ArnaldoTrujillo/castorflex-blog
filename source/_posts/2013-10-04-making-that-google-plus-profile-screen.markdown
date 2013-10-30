@@ -575,7 +575,19 @@ I showed you 4 ways to make this screen:
 I was incapable to find a 'good' way to implement that sticky tabs but if you have any idea, please do not hesitate to comment or contact me! And if you don't, then share it!
 
 
+#EDIT
 
+Thank you, [Wolfram Rittmeyer] for suggesting me to use [uiautomatorviewer] and see how they actually make it in the google plus app. I discovered they use the solution #4. Indead, the tabs are in the header **and** in the `FrameLayout` containing the `ListView`. They just turn the visibility of the `HorizontalScrollView` to VISIBLE/INVISIBLE.
+
+{% img center /images/screen_gplus_uiautomatorviewer.png %}
+
+
+
+
+
+[uiautomatorviewer]:http://developer.android.com/tools/testing/testing_ui.html
+
+[Wolfram Rittmeyer]: https://plus.google.com/+WolframRittmeyer
 
 [overdraw post]:http://www.curious-creature.org/2012/12/01/android-performance-case-study/
 
