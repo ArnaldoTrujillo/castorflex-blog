@@ -4,7 +4,7 @@ title: "Making that Google Plus profile screen"
 date: 2013-10-04 06:54
 comments: true
 categories: UI
-description: "We will show a way to make the Android app's Google plus profile screen. List HeaderView, sticky header, parallax, imageview, rounded avatar, and colorfilter."
+description: "We will see a way to make the Android app's Google plus profile screen. List HeaderView, sticky header, parallax, imageview, rounded avatar, and colorfilter."
 keywords: "android, parallax, imageview, listview, griview, stick, sticky header, google plus profile, polish, color filter, colorfilter, smooth"
 ---
 
