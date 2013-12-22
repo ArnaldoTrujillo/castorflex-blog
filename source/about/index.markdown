@@ -13,7 +13,7 @@ Contact me
 ==========
 
 -	Mail: merle.antoine (at) gmail
--	Twitter: [ygort][1]
+-	Twitter: [@antoine_merle][1]
 -	GPlus: [Antoine Merle][2]
 -	Linkedin: [Antoine Merle][3]
 -	Viadeo: [Antoine Merle][7]
@@ -21,7 +21,7 @@ Contact me
 -	StackOverflow: [CV][5] or [Profile][6]
 
 
-[1]: http://twitter.com/ygort
+[1]: http://twitter.com/antoine_merle
 [2]: http://plus.google.com/108486473528609847558/
 [3]: http://www.linkedin.com/pub/antoine-merle/55/13b/a08
 [4]: https://github.com/castorflex
